@@ -80,43 +80,45 @@ class DrawingController: UIViewController {
     // MARK: ObjC Methods
     
     @objc func handleAdd() {
-        let node = SCNNode()
-//        let path = UIBezierPath()
-//        path.move(to: CGPoint(x: 0, y: 0))
-//        path.addLine(to: CGPoint(x: 0, y: 0.2))
-//        path.addLine(to: CGPoint(x: 0.2, y: 0.3))
-//        path.addLine(to: CGPoint(x: 0.4, y: 0.2))
-//        let shape = SCNShape(path: path, extrusionDepth: 0.2)
-//        node.geometry = shape
-//        node.geometry = SCNTorus(ringRadius: 0.3, pipeRadius: 0.1)
-//        node.geometry = SCNSphere(radius: 0.2)
-//        node.geometry = SCNCylinder(radius: 0.2, height: 0.2)
-//        node.geometry = SCNCone(topRadius: 0.3, bottomRadius: 0.3, height: 0.4)
-//        node.geometry = SCNCapsule(capRadius: 0.1, height: 0.3)
-//        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03)
-        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1)
-        node.geometry?.firstMaterial?.specular.contents = UIColor.orange
-        node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        node.position = SCNVector3(0.2,0.3,-0.2)
         
-        let cylinderNode  = SCNNode()
-        cylinderNode.geometry = SCNCylinder(radius: 0.1, height: 0.3)
-        cylinderNode.geometry?.firstMaterial?.specular.contents = UIColor.red
-        cylinderNode.geometry?.firstMaterial?.diffuse.contents = UIColor.green
-        cylinderNode.position = SCNVector3(-0.1,0.5,-0.5)
+        let planeNode = SCNNode(geometry: SCNPlane(width: 0.3, height: 0.3))
+        planeNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        planeNode.position = SCNVector3(0,0,-0.3)
+        planeNode.eulerAngles = SCNVector3(0,90.degreesToRadians,0)
         
-        let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
-        boxNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-        boxNode.geometry?.firstMaterial?.specular.contents = UIColor.white
-        boxNode.position = SCNVector3(0,-0.05,0)
+        sceneView.scene.rootNode.addChildNode(planeNode)
         
-        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
-        doorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.brown
-        doorNode.position = SCNVector3(0,-0.02,0.053)
+//        let pyramidNode = SCNNode(geometry: SCNPyramid(width: 0.1, height: 0.1, length: 0.1))
+//        pyramidNode.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+//        pyramidNode.position = SCNVector3(0,0,-0.3)
+//        pyramidNode.eulerAngles = SCNVector3(Float(90.degreesToRadians),0,0)
+//
+//        sceneView.scene.rootNode.addChildNode(pyramidNode)
         
-        node.addChildNode(boxNode)
-        boxNode.addChildNode(doorNode)
-        sceneView.scene.rootNode.addChildNode(node)
+//        let node = SCNNode()
+//        node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1)
+//        node.geometry?.firstMaterial?.specular.contents = UIColor.orange
+//        node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+//        node.position = SCNVector3(0.2,0.3,-0.2)
+//
+//        let cylinderNode  = SCNNode()
+//        cylinderNode.geometry = SCNCylinder(radius: 0.1, height: 0.3)
+//        cylinderNode.geometry?.firstMaterial?.specular.contents = UIColor.red
+//        cylinderNode.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+//        cylinderNode.position = SCNVector3(-0.1,0.5,-0.5)
+//
+//        let boxNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+//        boxNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+//        boxNode.geometry?.firstMaterial?.specular.contents = UIColor.white
+//        boxNode.position = SCNVector3(0,-0.05,0)
+//
+//        let doorNode = SCNNode(geometry: SCNPlane(width: 0.03, height: 0.06))
+//        doorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.brown
+//        doorNode.position = SCNVector3(0,-0.02,0.053)
+//
+//        node.addChildNode(boxNode)
+//        boxNode.addChildNode(doorNode)
+//        sceneView.scene.rootNode.addChildNode(node)
         //sceneView.scene.rootNode.addChildNode(cylinderNode)
     }
     
@@ -133,7 +135,11 @@ class DrawingController: UIViewController {
     }
 }
 
-
+extension Int {
+    var degreesToRadians: Float {
+        return Float(Double(self) * .pi / 180)
+    }
+}
 
 
 
