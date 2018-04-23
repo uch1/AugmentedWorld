@@ -40,16 +40,44 @@ class DrawingController: UIViewController, ARSCNViewDelegate {
     }
     
     func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
-        print("Rendering Something")
         guard let pointOfView = sceneView.pointOfView else { return }
         
         let transform = pointOfView.transform
-        let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
+        let orientation = SCNVector3(transform.m31, transform.m32, transform.m33)
         let location = SCNVector3(transform.m41, transform.m42, transform.m43)
         
         let currentPositionOfCamera = orientation + location
-        print(orientation.x, orientation.y, orientation.y)
+        //print(orientation.x, orientation.y, orientation.y)
+        
+        DispatchQueue.main.async {
+            if self.drawButton.isHighlighted {
+                let sphereNode = SCNNode(geometry: SCNSphere(radius: 0.02))
+                sphereNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+                sphereNode.position = currentPositionOfCamera
+                self.sceneView.scene.rootNode.addChildNode(sphereNode)
+                
+                print("Draw button is being pressed")
+            } else {
+                
+                let pointerNode = SCNNode(geometry: SCNSphere(radius: 0.01))
+                pointerNode.name = "pointer"
+                pointerNode.position = currentPositionOfCamera
+                
+                self.sceneView.scene.rootNode.enumerateHierarchy({ (node, _) in
+                    if node.name == "pointer" {
+                        node.removeFromParentNode()
+                    }
+                })
+                
+                self.sceneView.scene.rootNode.addChildNode(pointerNode)
+                pointerNode.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+            }
+        }
+        
+
     }
+    
+    
     
     func setupSceneView() {
         sceneView.delegate = self
