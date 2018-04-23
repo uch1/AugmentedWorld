@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class DrawingController: UIViewController {
+class DrawingController: UIViewController, ARSCNViewDelegate {
     
     // MARK: Properties
     let configuration = ARWorldTrackingConfiguration()
@@ -32,20 +32,27 @@ class DrawingController: UIViewController {
         return button
     }()
     
-    @objc func handleDraw() {
-        
-    }
-    
-    
+    // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSceneView()
     }
     
-    // MARK: Methods
+    func renderer(_ renderer: SCNSceneRenderer, willRenderScene scene: SCNScene, atTime time: TimeInterval) {
+        print("Rendering Something")
+        guard let pointOfView = sceneView.pointOfView else { return }
+        
+        let transform = pointOfView.transform
+        let orientation = SCNVector3(-transform.m31, -transform.m32, -transform.m33)
+        let location = SCNVector3(transform.m41, transform.m42, transform.m43)
+        
+        let currentPositionOfCamera = orientation + location
+        print(orientation.x, orientation.y, orientation.y)
+    }
     
     func setupSceneView() {
+        sceneView.delegate = self
         sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         sceneView.session.run(configuration)
         sceneView.showsStatistics = true 
@@ -61,14 +68,20 @@ class DrawingController: UIViewController {
         
         view.addSubview(drawButton)
         drawButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 20, paddingRight: 0, width: 65, height: 45)
-//        drawButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         drawButton.centerAnchor(centerX: view.centerXAnchor, centerY: nil)
+        
+    }
+    
+    // MARK: Objc-Methods
+    @objc func handleDraw() {
         
     }
     
 }
 
-
+func +(left: SCNVector3, right: SCNVector3) -> SCNVector3 {
+    return SCNVector3Make(left.x + right.x, left.y + right.y, left.z + right.z)
+}
 
 
 
