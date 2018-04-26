@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         
-        let drawingController = DrawingController()
-        window?.rootViewController = drawingController
+        let textureAndSurfaceController = TextureAndSurfaceController()
+        window?.rootViewController = textureAndSurfaceController
         
         return true
     }

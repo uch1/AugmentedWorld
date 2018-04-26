@@ -15,6 +15,7 @@
 		803B17D7208DB6BA00E9CBC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 803B17D5208DB6BA00E9CBC5 /* LaunchScreen.storyboard */; };
 		803B17DF208DB6D900E9CBC5 /* DrawingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B17DE208DB6D900E9CBC5 /* DrawingController.swift */; };
 		803B17E1208DB79500E9CBC5 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B17E0208DB79500E9CBC5 /* UIView+Extension.swift */; };
+		803B17E3209047E900E9CBC5 /* TextureAndSurfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803B17E2209047E800E9CBC5 /* TextureAndSurfaceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		803B17D8208DB6BA00E9CBC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		803B17DE208DB6D900E9CBC5 /* DrawingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingController.swift; sourceTree = "<group>"; };
 		803B17E0208DB79500E9CBC5 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		803B17E2209047E800E9CBC5 /* TextureAndSurfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureAndSurfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				803B17CC208DB6B700E9CBC5 /* art.scnassets */,
 				803B17CE208DB6B700E9CBC5 /* ViewController.swift */,
 				803B17DE208DB6D900E9CBC5 /* DrawingController.swift */,
+				803B17E2209047E800E9CBC5 /* TextureAndSurfaceController.swift */,
 				803B17D0208DB6B700E9CBC5 /* Main.storyboard */,
 				803B17D3208DB6BA00E9CBC5 /* Assets.xcassets */,
 				803B17D5208DB6BA00E9CBC5 /* LaunchScreen.storyboard */,
@@ -149,6 +152,7 @@
 				803B17CF208DB6B700E9CBC5 /* ViewController.swift in Sources */,
 				803B17E1208DB79500E9CBC5 /* UIView+Extension.swift in Sources */,
 				803B17CB208DB6B700E9CBC5 /* AppDelegate.swift in Sources */,
+				803B17E3209047E900E9CBC5 /* TextureAndSurfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
